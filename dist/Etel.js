@@ -1,4 +1,3 @@
-"use strict";
 class Etel {
     constructor(nev, kaloriaSzam) {
         this.nev = nev;
@@ -37,3 +36,4 @@ class Etel {
         return `${this.nev} (${this._kaloriaSzam} kaloria), fogyaszthato: ${fogyaszthato_szoveg}!`;
     }
 }
+export { Etel };

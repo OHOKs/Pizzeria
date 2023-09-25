@@ -56,3 +56,5 @@ class Etel implements EtelInterface {
         return `${this.nev} (${this._kaloriaSzam} kaloria), fogyaszthato: ${fogyaszthato_szoveg}!`;
     }
 }
+
+export { Etel, EtelInterface }

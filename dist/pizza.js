@@ -1,13 +1,12 @@
-import "etel";
-const app = () => {
-    console.log("Hello World!");
-};
-class Pizza extends Etel {
+import * as etel from "./etel.js";
+class Pizza extends etel.Etel {
     constructor(pizzaName, pizzaCalorie, pizzaPrice = 1500) {
         if (!pizzaName.includes('pizza')) {
             super(pizzaName + " pizza", pizzaCalorie);
         }
-        super(pizzaName, pizzaCalorie);
+        else {
+            super(pizzaName, pizzaCalorie);
+        }
         if (pizzaPrice < 0) {
             this._ar = 1000;
         }
@@ -22,11 +21,17 @@ class Pizza extends Etel {
     }
     feltetetFelvesz(feltet) {
         if (!this.isAFeltetel(feltet)) {
-            throw new Error("HIBA Nem egy feltet!");
+            console.log("HIBA Nem egy feltet!");
         }
-        // TODO finish this check to find out if a feltet already exists
-        this.feltetek.filter(alreadyInArrayFeltet => );
-        this.feltetek.push(feltet);
+        for (const felvettFeltet of this.feltetek) {
+            if (felvettFeltet === feltet.nev) {
+                console.log("HIBA Mar van ilyen feltet!");
+                return;
+            }
+        }
+        this.feltetek.push(feltet.nev);
+        this._kaloriaSzam += feltet.kaloria;
+        console.log("A felvetel sikeres!");
     }
     isAFeltetel(obj) {
         return 'nev' in obj && 'kaloria' in obj;
@@ -48,4 +53,8 @@ class Pizza extends Etel {
     setFeltetek(feltetek) {
         this.feltetek = feltetek;
     }
+    info() {
+        return `${this.nev} (${this._kaloriaSzam} kaloria),  fogyaszthato: ${this._fogyaszthato ? "igen" : "nem"}, ar: ${this._ar} forint, feltetek: ${this.feltetek},`;
+    }
 }
+export { Pizza };

@@ -4,12 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./dist/main.js"></script>
+    <script type="module">
+        import * as main from "./dist/main.js"
+        main.test()
+        const test = () => main.test();
+    </script>
     <title>ASD</title>
 </head>
 
 <body>
-    <button onclick="app()">ASDASDADS</button>
+    <button onclick="test()">ASDASDADS</button>
 </body>
 
 </html>

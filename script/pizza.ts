@@ -1,45 +1,42 @@
-import "etel"
-
-const app = (): void => {
-    console.log("Hello World!");
-}
+import * as etel from "./etel.js"
 
 interface FeltetekInterface {
     nev: string;
     kaloria: number;
 }
 
-interface PizzaInterface extends EtelInterface {
+interface PizzaInterface extends etel.EtelInterface {
     _ar: number;
-    feltetek: Array<FeltetekInterface>;
+    feltetek: Array<string>;
 
     megromlik(): string;
     feltetetFelvesz(feltet: any): void;
     isAFeltetel(obj: any): obj is FeltetekInterface;
 
     getAr(): number;
-    getFeltetek(): Array<FeltetekInterface>;
+    getFeltetek(): Array<string>;
 
     setAr(pizzaPrice: number): void;
-    setFeltetek(feltetek: Array<FeltetekInterface>): void;
+    setFeltetek(feltetek: Array<string>): void;
 }
 
-class Pizza extends Etel implements PizzaInterface {
+class Pizza extends etel.Etel implements PizzaInterface {
     _ar: number;
-    feltetek: FeltetekInterface[];
+    feltetek: string[];
 
     constructor(pizzaName: string, pizzaCalorie: number, pizzaPrice: number = 1500) {
         if (!pizzaName.includes('pizza')) {
             super(pizzaName + " pizza", pizzaCalorie);
+        } else {
+            super(pizzaName, pizzaCalorie);
         }
-
-        super(pizzaName, pizzaCalorie);
 
         if (pizzaPrice < 0) {
             this._ar = 1000;
         } else {
             this._ar = pizzaPrice;
         }
+
         this.feltetek = [];
     }
 
@@ -50,11 +47,20 @@ class Pizza extends Etel implements PizzaInterface {
 
     feltetetFelvesz(feltet: any): void {
         if (!this.isAFeltetel(feltet)) {
-            throw new Error("HIBA Nem egy feltet!");
+            console.log("HIBA Nem egy feltet!");
         }
-        // TODO finish this check to find out if a feltet already exists
-        this.feltetek.filter(alreadyInArrayFeltet => )
-        this.feltetek.push(feltet);
+
+        for (const felvettFeltet of this.feltetek) {
+            if (felvettFeltet === feltet.nev) {
+                console.log("HIBA Mar van ilyen feltet!");
+                return;
+            }
+        }
+
+        this.feltetek.push(feltet.nev);
+        this._kaloriaSzam += feltet.kaloria;
+
+        console.log("A felvetel sikeres!");
     }
 
     isAFeltetel(obj: any): obj is FeltetekInterface {
@@ -65,7 +71,7 @@ class Pizza extends Etel implements PizzaInterface {
         return this._ar
     }
 
-    getFeltetek(): FeltetekInterface[] {
+    getFeltetek(): string[] {
         return this.feltetek
     }
 
@@ -77,7 +83,13 @@ class Pizza extends Etel implements PizzaInterface {
         }
     }
 
-    setFeltetek(feltetek: FeltetekInterface[]): void {
+    setFeltetek(feltetek: string[]): void {
         this.feltetek = feltetek
     }
+
+    info(): string {
+        return `${this.nev} (${this._kaloriaSzam} kaloria),  fogyaszthato: ${this._fogyaszthato ? "igen" : "nem"}, ar: ${this._ar} forint, feltetek: ${this.feltetek},`
+    }
 }
+
+export { Pizza }
