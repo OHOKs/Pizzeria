@@ -9,10 +9,10 @@ class Etel {
         }
         this._fogyaszthato = true;
     }
-    getKaloriaSzam() {
+    get kaloriaSzam() {
         return this._kaloriaSzam;
     }
-    setKaloriaSzam(ertek) {
+    set kaloriaSzam(ertek) {
         if (ertek >= 0) {
             this._kaloriaSzam = ertek;
         }
@@ -20,10 +20,10 @@ class Etel {
             this._kaloriaSzam = 0;
         }
     }
-    getFogyaszthato() {
+    get fogyaszthato() {
         return this._fogyaszthato;
     }
-    setFogyaszthato(ertek) {
+    set fogyaszthato(ertek) {
         if (typeof ertek === 'boolean') {
             this._fogyaszthato = ertek;
         }

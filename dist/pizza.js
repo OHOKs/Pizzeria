@@ -13,7 +13,7 @@ class Pizza extends etel.Etel {
         else {
             this._ar = pizzaPrice;
         }
-        this.feltetek = [];
+        this.feltetekList = [];
     }
     megromlik() {
         this._fogyaszthato = false;
@@ -23,26 +23,26 @@ class Pizza extends etel.Etel {
         if (!this.isAFeltetel(feltet)) {
             console.log("HIBA Nem egy feltet!");
         }
-        for (const felvettFeltet of this.feltetek) {
+        for (const felvettFeltet of this.feltetekList) {
             if (felvettFeltet === feltet.nev) {
                 console.log("HIBA Mar van ilyen feltet!");
                 return;
             }
         }
-        this.feltetek.push(feltet.nev);
+        this.feltetekList.push(feltet.nev);
         this._kaloriaSzam += feltet.kaloria;
         console.log("A felvetel sikeres!");
     }
     isAFeltetel(obj) {
         return 'nev' in obj && 'kaloria' in obj;
     }
-    getAr() {
+    get ar() {
         return this._ar;
     }
-    getFeltetek() {
-        return this.feltetek;
+    get feltetek() {
+        return this.feltetekList;
     }
-    setAr(pizzaPrice) {
+    set ar(pizzaPrice) {
         if (pizzaPrice < 0) {
             this._ar = 1000;
         }
@@ -50,11 +50,11 @@ class Pizza extends etel.Etel {
             this._ar = pizzaPrice;
         }
     }
-    setFeltetek(feltetek) {
-        this.feltetek = feltetek;
+    set feltetek(feltetek) {
+        this.feltetekList = feltetek;
     }
     info() {
-        return `${this.nev} (${this._kaloriaSzam} kaloria),  fogyaszthato: ${this._fogyaszthato ? "igen" : "nem"}, ar: ${this._ar} forint, feltetek: ${this.feltetek},`;
+        return `${this.nev} (${this._kaloriaSzam} kaloria),  fogyaszthato: ${this._fogyaszthato ? "igen" : "nem"}, ar: ${this._ar} forint, feltetek: ${this.feltetekList},`;
     }
 }
 export { Pizza };

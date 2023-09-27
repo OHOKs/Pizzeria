@@ -3,11 +3,11 @@ interface EtelInterface {
     _fogyaszthato: boolean;
     nev: string;
 
-    getKaloriaSzam(): number;
-    getFogyaszthato(): boolean;
+    get kaloriaSzam(): number;
+    get fogyaszthato(): boolean;
 
-    setKaloriaSzam(value: number): void;
-    setFogyaszthato(value: boolean): void;
+    set kaloriaSzam(value: number);
+    set fogyaszthato(value: boolean);
 
     info(): string;
 }
@@ -27,11 +27,11 @@ class Etel implements EtelInterface {
         this._fogyaszthato = true;
     }
 
-    getKaloriaSzam(): number {
+    get kaloriaSzam(): number {
         return this._kaloriaSzam;
     }
 
-    setKaloriaSzam(ertek: number): void {
+    set kaloriaSzam(ertek: number) {
         if (ertek >= 0) {
             this._kaloriaSzam = ertek;
         } else {
@@ -39,11 +39,11 @@ class Etel implements EtelInterface {
         }
     }
 
-    getFogyaszthato(): boolean {
+    get fogyaszthato(): boolean {
         return this._fogyaszthato;
     }
 
-    setFogyaszthato(ertek: boolean): void {
+    set fogyaszthato(ertek: boolean) {
         if (typeof ertek === 'boolean') {
             this._fogyaszthato = ertek;
         } else {

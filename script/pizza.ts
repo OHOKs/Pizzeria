@@ -7,22 +7,22 @@ interface FeltetekInterface {
 
 interface PizzaInterface extends etel.EtelInterface {
     _ar: number;
-    feltetek: Array<string>;
+    feltetekList: Array<string>;
 
     megromlik(): string;
     feltetetFelvesz(feltet: any): void;
     isAFeltetel(obj: any): obj is FeltetekInterface;
 
-    getAr(): number;
-    getFeltetek(): Array<string>;
+    get ar(): number;
+    get feltetek(): Array<string>;
 
-    setAr(pizzaPrice: number): void;
-    setFeltetek(feltetek: Array<string>): void;
+    set ar(pizzaPrice: number);
+    set feltetek(feltetek: Array<string>);
 }
 
 class Pizza extends etel.Etel implements PizzaInterface {
     _ar: number;
-    feltetek: string[];
+    feltetekList: string[];
 
     constructor(pizzaName: string, pizzaCalorie: number, pizzaPrice: number = 1500) {
         if (!pizzaName.includes('pizza')) {
@@ -37,7 +37,7 @@ class Pizza extends etel.Etel implements PizzaInterface {
             this._ar = pizzaPrice;
         }
 
-        this.feltetek = [];
+        this.feltetekList = [];
     }
 
     megromlik(): string {
@@ -50,14 +50,14 @@ class Pizza extends etel.Etel implements PizzaInterface {
             console.log("HIBA Nem egy feltet!");
         }
 
-        for (const felvettFeltet of this.feltetek) {
+        for (const felvettFeltet of this.feltetekList) {
             if (felvettFeltet === feltet.nev) {
                 console.log("HIBA Mar van ilyen feltet!");
                 return;
             }
         }
 
-        this.feltetek.push(feltet.nev);
+        this.feltetekList.push(feltet.nev);
         this._kaloriaSzam += feltet.kaloria;
 
         console.log("A felvetel sikeres!");
@@ -67,15 +67,15 @@ class Pizza extends etel.Etel implements PizzaInterface {
         return 'nev' in obj && 'kaloria' in obj
     }
 
-    getAr(): number {
+    get ar(): number {
         return this._ar
     }
 
-    getFeltetek(): string[] {
-        return this.feltetek
+    get feltetek(): string[] {
+        return this.feltetekList
     }
 
-    setAr(pizzaPrice: number): void {
+    set ar(pizzaPrice: number) {
         if (pizzaPrice < 0) {
             this._ar = 1000;
         } else {
@@ -83,12 +83,12 @@ class Pizza extends etel.Etel implements PizzaInterface {
         }
     }
 
-    setFeltetek(feltetek: string[]): void {
-        this.feltetek = feltetek
+    set feltetek(feltetek: string[]) {
+        this.feltetekList = feltetek
     }
 
     info(): string {
-        return `${this.nev} (${this._kaloriaSzam} kaloria),  fogyaszthato: ${this._fogyaszthato ? "igen" : "nem"}, ar: ${this._ar} forint, feltetek: ${this.feltetek},`
+        return `${this.nev} (${this._kaloriaSzam} kaloria),  fogyaszthato: ${this._fogyaszthato ? "igen" : "nem"}, ar: ${this._ar} forint, feltetek: ${this.feltetekList},`
     }
 }
 

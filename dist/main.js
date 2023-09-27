@@ -5,9 +5,9 @@ const app = () => {
 const test = () => {
     const pizzaClass = new pizza.Pizza("Pepperoni", 22);
     pizzaClass.feltetetFelvesz({ nev: "Sajt", kaloria: 332 });
-    console.log(pizzaClass.getAr());
-    console.log(pizzaClass.getFeltetek());
-    console.log(pizzaClass.getFogyaszthato());
-    console.log(pizzaClass.getKaloriaSzam());
+    console.log(pizzaClass.ar);
+    console.log(pizzaClass.feltetek);
+    console.log(pizzaClass.fogyaszthato);
+    console.log(pizzaClass.kaloriaSzam);
 };
 export { app, test };
