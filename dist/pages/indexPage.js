@@ -6,11 +6,17 @@ const logoutUser = (event) => {
 };
 const displayLogout = () => {
     const button = document.createElement('button');
+    const div = document.createElement('div');
+    const rendeles = document.createElement("a");
     button.value = "Logout";
     button.name = "logoutButton";
     button.id = "logoutButton";
     button.innerText = "Logout";
     button.addEventListener('click', logoutUser);
+    rendeles.href = "./rendeles";
+    rendeles.innerHTML = "Rendeles";
+    div.append(rendeles);
+    document.body.append(div);
     document.body.append(button);
 };
 const displayLogin = () => {

@@ -15,6 +15,23 @@ class Pizza extends etel.Etel {
         }
         this.feltetekList = [];
     }
+    get ar() {
+        return this._ar;
+    }
+    set ar(pizzaPrice) {
+        if (pizzaPrice < 0) {
+            this._ar = 1000;
+        }
+        else {
+            this._ar = pizzaPrice;
+        }
+    }
+    get feltetek() {
+        return this.feltetekList;
+    }
+    set feltetek(feltetek) {
+        this.feltetekList = feltetek;
+    }
     megromlik() {
         this._fogyaszthato = false;
         return "A pizza megromlott";
@@ -35,23 +52,6 @@ class Pizza extends etel.Etel {
     }
     isAFeltetel(obj) {
         return 'nev' in obj && 'kaloria' in obj;
-    }
-    get ar() {
-        return this._ar;
-    }
-    get feltetek() {
-        return this.feltetekList;
-    }
-    set ar(pizzaPrice) {
-        if (pizzaPrice < 0) {
-            this._ar = 1000;
-        }
-        else {
-            this._ar = pizzaPrice;
-        }
-    }
-    set feltetek(feltetek) {
-        this.feltetekList = feltetek;
     }
     info() {
         return `${this.nev} (${this._kaloriaSzam} kaloria),  fogyaszthato: ${this._fogyaszthato ? "igen" : "nem"}, ar: ${this._ar} forint, feltetek: ${this.feltetekList},`;
