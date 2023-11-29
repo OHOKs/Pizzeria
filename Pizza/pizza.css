@@ -11,6 +11,10 @@ html {
     overflow: hidden;
 }
 
+h1{
+    padding: 50px;
+}
+
 body {
     text-align: center;
     height: 100vh;
@@ -42,19 +46,28 @@ table {
     width: 80%;
     border-collapse: collapse;
     margin-top: 20px;
-    background-color:#ffffff88;
-    backdrop-filter: blur(50px);
 }
 
 th, td {
-    border: 1px solid #ddd;
+    border: 0;
     padding: 8px;
     text-align: left;
     backdrop-filter: blur(50px);
 }
 
-th {
-    background-color: #f2f2f2;
-    backdrop-filter: blur(50px);
+td{
+    background-color:#ffffff36;
+    backdrop-filter: blur(25px);
 }
 
+th {
+    background-color: #f2f2f2;
+}
+
+#elso{
+    border-radius: 20px 0 0 0 ;
+}
+
+#last{
+    border-radius: 0 20px 0 0 ;
+}
