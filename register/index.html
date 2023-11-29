@@ -2,26 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="register.css">
     <title>Register</title>
 </head>
 <body>
-    <label for="usernameField">Username</label>
-    <br>
-    <input type="text" name="usernameField" id="usernameField">
-    <br>
-    <br>
-    <label for="passwordField">Password</label>
-    <br>
-    <input type="password" name="passwordField" id="passwordField">
-    <br>
-    <br>
-    <label for="passwordField2">Password Conformation</label>
-    <br>
-    <input type="password" name="passwordField" id="passwordField2">
-    <br>
-    <br>
-    <input type="button" value="Register" id="registerButton">
-
-    <script type="module" src="../dist/pages/registerPage.js"></script>
+    <div class="login-box">
+        <h2>Register</h2>
+        <form>
+          <div class="user-box">
+            <input type="text" name="usernameField" id="usernameField">
+            <label for="usernameField">Username</label>
+          </div>
+          <div class="user-box">
+            <input type="password" name="passwordField" id="passwordField">
+            <label for="passwordField">Password</label>
+          </div>
+          <div class="user-box">
+            <input type="password" name="passwordField" id="passwordField2">
+            <label for="passwordField2">Password Conformation</label>
+          </div>
+          <a class="submit" type="button" value="Register" id="registerButton">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Regist
+          </a>
+        </form>
+      </div>
+      <script type="module" src="../dist/pages/registerPage.js"></script>
 </body>
 </html>

@@ -1,7 +1,15 @@
+/**
+ * Represents an interface for cookie operations.
+ *
+ * @interface
+ */
 interface CookieInterface {
     setCookie(cname: string, cvalue: string): void
+
     getCookie(cname: string): string
+
     checkCookies(cnames: Array<string>): boolean
+
     checkIfAuthed(): boolean
 }
 
@@ -16,11 +24,19 @@ class Cookie implements CookieInterface {
         return true;
     }
 
+
     checkIfAuthed(): boolean {
         let c = this.getCookie("auth")
         return (c == 'true');
     }
 
+
+    /**
+     * Retrieves the value of a cookie by its name.
+     *
+     * @param {string} cname - The name of the cookie to be retrieved.
+     * @return {string} - The value of the cookie with the given name, or an empty string if the cookie doesn't exist.
+     */
     getCookie(cname: string): string {
         let decodedCookie = decodeURIComponent(document.cookie)
         let ca = decodedCookie.split(';')
@@ -35,6 +51,14 @@ class Cookie implements CookieInterface {
         return "";
     }
 
+
+    /**
+     * Sets a cookie with the given name and value.
+     *
+     * @param {string} cname - The name of the cookie.
+     * @param {string} cvalue - The value of the cookie.
+     * @return {void}
+     */
     setCookie(cname: string, cvalue: string): void {
         document.cookie = `${cname}=${cvalue};path=/`
     }

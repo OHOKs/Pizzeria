@@ -1,19 +1,17 @@
-{
-    [
-        {
-            "name": "Hawaii pizza",
-            "calorie": 1500,
-            "ár": 3000
-        },
-        {
-            "name": "Húsimádó pizza",
-            "calorie": 2500,
-            "ár": 4000
-        },
-        {
-            "name": "Sonkás pizza",
-            "calorie": 1250,
-            "ár": 2500
-        }
-    ]
-}
+[
+  {
+    "name": "Hawaii pizza",
+    "calorie": 1500,
+    "ár": 3000
+  },
+  {
+    "name": "Húsimádó pizza",
+    "calorie": 2500,
+    "ár": 4000
+  },
+  {
+    "name": "Sonkás pizza",
+    "calorie": 1250,
+    "ár": 2500
+  }
+]

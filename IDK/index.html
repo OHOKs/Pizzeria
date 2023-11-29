@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="pizza.css">
+</head>
+<body>
+    <h1>Rendelt Pizzák</h1>
+    <input type="file" id="fileInput" accept=".json" />
+    <button onclick="handleFile()">Feltöltés</button>
+    
+    <table id="output">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Calorie</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script src="pizza.js"></script>
+</body>
+</html>

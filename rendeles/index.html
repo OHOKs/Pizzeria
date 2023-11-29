@@ -2,33 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link href='https://unpkg.com/css.gg@2.0.0/icons/css/software-download.css' rel='stylesheet'>
+    <link href="rendeles.css" rel="stylesheet">
     <title>Rendeles</title>
 </head>
 <body>
-    <label for="penzKeret">Penzkeret</label>
-    <br>
-    <input id="penzKeret" name="" type="number">
-    <br>
-    <label for="pizzaNev">Pizza neve</label>
-    <br>
-    <input id="pizzaNev" name="" type="text">
-    <br>
-    <label for="pizzaCal">Pizza kaloriaja</label>
-    <br>
-    <input id="pizzaCal" name="" type="number">
-    <br>
-    <label for="pizzaAr">Pizza ara</label>
-    <br>
-    <input id="pizzaAr" name="" type="number">
-    <br>
-    <br>
-    <button id="rendelesHozzaadas">Tetel hozzadasa</button>
-    <br>
-    <br>
-    <button id="rendelesekLetoltese">Rendelesek letoltese</button>
-    <br>
-    <br>
-    <a href="../">Vissza</a>
+    <div class="login-box">
+        <h2>Rendelés</h2>
+        <form>
+            <div class="user-box">
+              <input id="penzKeret" name="" type="number">
+              <label for="penzKeret">Penzkeret</label>
+            </div>
+          <div class="user-box">
+            <input id="pizzaNev" name="" type="text">
+            <label for="pizzaNev">Pizza neve</label>
+          </div>
+          <div class="user-box">
+            <input id="pizzaCal" name="" type="number">
+            <label for="pizzaCal">Pizza kaloriaja</label>
+          </div>
+          <div class="user-box">
+            <input id="pizzaAr" name="" type="number">
+            <label for="pizzaAr">Pizza ara</label>
+          </div>
+            <button id="rendelesHozzaadas">Tetel hozzadasa</button>
+            <button id="rendelesekLetoltese"><i class="gg-software-download"></i></button>
+        </form>
+        <a class="back" href="">Vissza</a>
+      </div>
     <script src="../dist/pages/rendelesPage.js" type="module"></script>
 </body>
 </html>
