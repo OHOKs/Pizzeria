@@ -1,0 +1,27 @@
+[
+    {
+        "username": "Kacsa",
+        "tel": 125691,
+        "address": "Aulich Lajos 44",
+        "name": "Hawaii pizza",
+      
+        "calorie": 1500,
+        "price": 3000
+    },
+    {
+        "username": "king",
+        "tel": 12752691,
+        "address": "Dozsa 44",
+        "name": "Gyros pizza",
+        "calorie": 15500,
+        "price": 300
+    },
+    {
+        "username": "mcdoanlds",
+        "tel": 127425691,
+        "address": "Deak 44",
+        "name": "Sajtos pizza",
+        "calorie": 15100,
+        "price": 30010
+    }
+]
