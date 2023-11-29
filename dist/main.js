@@ -3,24 +3,29 @@ import * as cookie from "./services/cookie.js";
 import * as register from "./services/register.js";
 import * as login from "./services/login.js";
 import * as index from "./services/index.js";
+import * as loadPizzak from "./services/loadPizzak.js";
 class Main {
     constructor() {
-        this.c = new cookie.Cookie;
-        this.r = new register.Register(this.c);
-        this.l = new login.Login(this.c);
-        this.i = new index.Index(this.c);
+        this._c = new cookie.Cookie;
+        this._p = new loadPizzak.LoadPizzak;
+        this._r = new register.Register(this._c);
+        this._l = new login.Login(this._c);
+        this._i = new index.Index(this._c);
+    }
+    get loadPizzak() {
+        return this._p;
     }
     get cookie() {
-        return this.c;
+        return this._c;
     }
     get login() {
-        return this.l;
+        return this._l;
     }
     get register() {
-        return this.r;
+        return this._r;
     }
     get index() {
-        return this.i;
+        return this._i;
     }
 }
 const app = () => {

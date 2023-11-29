@@ -16,9 +16,11 @@ const getInputElementValue = (id: string) => {
 const getButtonElement = (id: string) => {
     return document.getElementById(id) as HTMLButtonElement | null
 }
+const getSelectElement = (id: string) => {
+    return document.getElementById(id) as HTMLSelectElement | null
+}
 
 let penzKeret = parseInt(getInputElementValue("penzkeret"))
-
 
 const vasarlo: Vasarlo = new Vasarlo(main.cookie.getCookie("username"), penzKeret)
 
@@ -29,11 +31,8 @@ const createDownloadableJSON = (): string => {
 
 const addItem = (event: any) => {
     penzKeret = parseInt(getInputElementValue("penzkeret"))
-    const pizzaNev = getInputElementValue("pizzaNev")
-    const pizzaCal = parseInt(getInputElementValue("pizzaCal"))
-    const pizzaAr = parseInt(getInputElementValue("pizzaAr"))
-    console.log(pizzaNev)
-    vasarlo.pizzatRendel(new Pizza(pizzaNev, pizzaCal, pizzaAr))
+
+    //vasarlo.pizzatRendel(new Pizza(pizzaNev, pizzaCal, pizzaAr))
 }
 
 const downloadAll = (event: any) => {
@@ -46,11 +45,24 @@ const downloadAll = (event: any) => {
     a.remove()
 }
 
+const addAllPizzasToSelect = () => {
+    let e = getSelectElement('pizzaDrop')
+    if (e == null) return
+    e.innerHTML += main.loadPizzak.getAllPizza().map(pizza => `<option value="${pizza.nev}">${pizza.nev}</option>`).join('')
+}
+
+// TODO finish this, whenever the user select a pizza it should be added to the object, and that should be downloadable
+const addPizza = (e: Event) => {
+    console.log(e.target?.value)
+}
+
+getSelectElement('pizzaDrop')?.addEventListener('change', (e) => addPizza(e))
 getButtonElement('rendelesHozzaadas')?.addEventListener('click', addItem)
 getButtonElement('rendelesekLetoltese')?.addEventListener('click', downloadAll)
 
 document.onreadystatechange = (event) => {
     if (document.readyState == 'complete') {
         if (!main.cookie.checkIfAuthed()) window.location.href = '../'
+        addAllPizzasToSelect()
     }
 }

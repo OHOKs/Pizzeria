@@ -1,7 +1,6 @@
-var _a, _b;
+var _a, _b, _c;
 import { Vasarlo } from "../vasarlo.js";
 import { Main } from "../main.js";
-import { Pizza } from "../pizza.js";
 const main = new Main();
 const getInputElementValue = (id) => {
     const element = document.getElementById(id);
@@ -15,6 +14,9 @@ const getInputElementValue = (id) => {
 const getButtonElement = (id) => {
     return document.getElementById(id);
 };
+const getSelectElement = (id) => {
+    return document.getElementById(id);
+};
 let penzKeret = parseInt(getInputElementValue("penzkeret"));
 const vasarlo = new Vasarlo(main.cookie.getCookie("username"), penzKeret);
 const createDownloadableJSON = () => {
@@ -23,11 +25,7 @@ const createDownloadableJSON = () => {
 };
 const addItem = (event) => {
     penzKeret = parseInt(getInputElementValue("penzkeret"));
-    const pizzaNev = getInputElementValue("pizzaNev");
-    const pizzaCal = parseInt(getInputElementValue("pizzaCal"));
-    const pizzaAr = parseInt(getInputElementValue("pizzaAr"));
-    console.log(pizzaNev);
-    vasarlo.pizzatRendel(new Pizza(pizzaNev, pizzaCal, pizzaAr));
+    //vasarlo.pizzatRendel(new Pizza(pizzaNev, pizzaCal, pizzaAr))
 };
 const downloadAll = (event) => {
     const file = new Blob([createDownloadableJSON()], { type: "application/json" });
@@ -38,11 +36,24 @@ const downloadAll = (event) => {
     a.click();
     a.remove();
 };
-(_a = getButtonElement('rendelesHozzaadas')) === null || _a === void 0 ? void 0 : _a.addEventListener('click', addItem);
-(_b = getButtonElement('rendelesekLetoltese')) === null || _b === void 0 ? void 0 : _b.addEventListener('click', downloadAll);
+const addAllPizzasToSelect = () => {
+    let e = getSelectElement('pizzaDrop');
+    if (e == null)
+        return;
+    e.innerHTML += main.loadPizzak.getAllPizza().map(pizza => `<option value="${pizza.nev}">${pizza.nev}</option>`).join('');
+};
+// TODO finish this, whenever the user select a pizza it should be added to the object, and that should be downloadable
+const addPizza = (e) => {
+    var _a;
+    console.log((_a = e.target) === null || _a === void 0 ? void 0 : _a.value);
+};
+(_a = getSelectElement('pizzaDrop')) === null || _a === void 0 ? void 0 : _a.addEventListener('change', (e) => addPizza(e));
+(_b = getButtonElement('rendelesHozzaadas')) === null || _b === void 0 ? void 0 : _b.addEventListener('click', addItem);
+(_c = getButtonElement('rendelesekLetoltese')) === null || _c === void 0 ? void 0 : _c.addEventListener('click', downloadAll);
 document.onreadystatechange = (event) => {
     if (document.readyState == 'complete') {
         if (!main.cookie.checkIfAuthed())
             window.location.href = '../';
+        addAllPizzasToSelect();
     }
 };
