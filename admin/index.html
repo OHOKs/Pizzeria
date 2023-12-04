@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Admin Panel</title>
-    <link rel="stylesheet" href="pizza.css">
+    <link href="pizza.css" rel="stylesheet">
 </head>
 <body>
     <h1>Rendelt Pizzák</h1>
-    <input type="file" id="fileInput" accept=".json" />
-    <button onclick="handleFile()">Feltöltés</button>
+    <input accept=".json" id="fileInput" type="file" />
+<!--    You can find the event handler here: ./script/pages/adminPage.ts-->
+    <button id="uploadButton">Feltöltés</button>
     
     <table id="output">
         <thead>
@@ -22,6 +23,6 @@
         <tbody></tbody>
     </table>
 
-    <script src="pizza.js"></script>
+    <script src="../dist/pages/adminPage.js" type="module"></script>
 </body>
 </html>

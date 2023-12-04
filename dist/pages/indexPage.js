@@ -27,9 +27,18 @@ const displayLogin = () => {
     div.append(a);
     document.body.append(div);
 };
+const displayAdminPanel = () => {
+    const div = document.createElement('div');
+    const a = document.createElement('a');
+    a.href = "./admin";
+    a.innerHTML = "Admin Panel";
+    div.append(a);
+    document.body.append(div);
+};
 const whatToDisplay = () => {
     if (main.index.checkIfLoggedIn()) {
         displayLogout();
+        displayAdminPanel();
     }
     else {
         displayLogin();
