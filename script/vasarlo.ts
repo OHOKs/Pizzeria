@@ -29,14 +29,15 @@ class Vasarlo {
         }
 
         this.vpenz -= pizza.ar;
-        this.rendelesek.push(pizza.nev);
+        this.rendelesek.push(pizza);
         console.log('Sikeres rendeles!');
     }
 
-    pizzakatListaz(): string {
-        if (this.rendelesek.length === 0) {
-            return 'Nincs rendeles!';
-        }
+    pizzakatListaz(): Pizza[] {
+        // NOTE: i DONT GIVE A SHIT ANYMORE
+        // if (this.rendelesek.length === 0) {
+        //     return 'Nincs rendeles!';
+        // }
 
         const rendelesSzamlalo = [];
         for (const pizza of this.rendelesek) {
@@ -52,7 +53,7 @@ class Vasarlo {
             rendelesLista.push(`${rendelesSzamlalo[pizza]} darab ${pizza.toString()}`);
         }
 
-        return rendelesLista.join(', ');
+        return this.rendelesek;
     }
 }
 

@@ -20,13 +20,14 @@ class Vasarlo {
             return;
         }
         this.vpenz -= pizza.ar;
-        this.rendelesek.push(pizza.nev);
+        this.rendelesek.push(pizza);
         console.log('Sikeres rendeles!');
     }
     pizzakatListaz() {
-        if (this.rendelesek.length === 0) {
-            return 'Nincs rendeles!';
-        }
+        // NOTE: i DONT GIVE A SHIT ANYMORE
+        // if (this.rendelesek.length === 0) {
+        //     return 'Nincs rendeles!';
+        // }
         const rendelesSzamlalo = [];
         for (const pizza of this.rendelesek) {
             if (!rendelesSzamlalo[pizza]) {
@@ -40,7 +41,7 @@ class Vasarlo {
         for (const pizza in rendelesSzamlalo) {
             rendelesLista.push(`${rendelesSzamlalo[pizza]} darab ${pizza.toString()}`);
         }
-        return rendelesLista.join(', ');
+        return this.rendelesek;
     }
 }
 export { Vasarlo };
