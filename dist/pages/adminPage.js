@@ -33,7 +33,13 @@ function handleFile() {
         if (e == null)
             return;
         const jsonData = parseJSON(e.target.result);
-        displayData(jsonData);
+        if (jsonData == null)
+            return;
+        for (const pizzaObj of jsonData) {
+            const pizza = pizzaObj;
+            main.loadPizzak.addNewPizzaToLocalStorage(pizza);
+        }
+        displayData(main.loadPizzak.getAllPizzaFromLocalStorage());
     };
     reader.readAsText(file);
 }
@@ -42,6 +48,8 @@ function displayData(data) {
     if (tbody == null)
         return;
     tbody.innerHTML = '';
+    // Quirky workaround for to be able to store the counter in localstorage xd
+    data.shift();
     data.forEach((item) => {
         const row = document.createElement('tr');
         const nameCell = document.createElement('td');

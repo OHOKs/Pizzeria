@@ -1,4 +1,6 @@
 import {Main} from "../main.js";
+import {networkInterfaces} from "node:os";
+import {Pizza} from "../pizza";
 
 const main = new Main()
 
@@ -38,7 +40,12 @@ function handleFile() {
     reader.onload = function (e: any) {
         if (e == null) return
         const jsonData = parseJSON(e.target.result);
-        displayData(jsonData);
+        if (jsonData == null) return
+        for (const pizzaObj of jsonData) {
+            const pizza = pizzaObj as Pizza
+            main.loadPizzak.addNewPizzaToLocalStorage(pizza)
+        }
+        displayData(main.loadPizzak.getAllPizzaFromLocalStorage());
     };
 
     reader.readAsText(file);
@@ -48,6 +55,9 @@ function displayData(data: any) {
     const tbody = document.querySelector('#output tbody');
     if (tbody == null) return
     tbody.innerHTML = '';
+
+    // Quirky workaround for to be able to store the counter in localstorage xd
+    data.shift()
 
     data.forEach((item: { nev: string | null; _kaloriaSzam: string | null; _ar: string | null; }) => {
         const row = document.createElement('tr');

@@ -9,54 +9,65 @@ const logoutUser = (event: any) => {
 
 const displayLogout = () => {
     const button = document.createElement('button')
-    const div = document.createElement('div')
-    const rendeles = document.createElement("a")
+    const parent = document.getElementById('box')
 
-    button.value = "Logout"
-    button.name = "logoutButton"
     button.id = "logoutButton"
-    button.innerText = "Logout"
+    button.innerHTML = "Logout"
     button.addEventListener('click', logoutUser)
+
+    parent?.append(button)
+}
+
+const displayRendeles = () => {
+    const parent = document.getElementById("box")
+    const rendeles = document.createElement("a")
 
     rendeles.href = "./rendeles"
     rendeles.innerHTML = "Rendeles"
-    div.append(rendeles)
 
-    document.body.append(div)
-    document.body.append(button)
- 
+    parent?.append(rendeles)
+}
+
+const displayRegister = () => {
+    const parent = document.getElementById("box")
+    const a = document.createElement('a')
+
+    console.log(parent)
+
+    a.href = "./register"
+    a.innerHTML = "Register"
+
+    parent?.append(a)
 }
 
 const displayLogin = () => {
-    const div = document.createElement('div')
+    const parent = document.getElementById("box")
     const a = document.createElement('a')
 
     a.href = "./login"
     a.innerHTML = "Login"
-    div.append(a)
-    div.className = "login-box"
 
-    document.body.append(div)
+    parent?.append(a)
 }
 
 const displayAdminPanel = () => {
-    const div = document.createElement('div')
+    const parent = document.getElementById("box")
     const a = document.createElement('a')
 
     a.href = "./admin"
     a.innerHTML = "Admin Panel"
-    div.append(a)
-    div.className = "login-box"
 
-    document.body.append(div)
+    parent?.append(a)
 }
 
 const whatToDisplay = () => {
     if (main.index.checkIfLoggedIn()) {
-        displayLogout()
+        displayRendeles()
         displayAdminPanel()
+        displayLogout()
     } else {
         displayLogin()
+        displayRegister()
     }
 }
 

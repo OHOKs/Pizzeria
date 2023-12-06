@@ -59,7 +59,6 @@ const addAllPizzasToSelect = () => {
         .join('')
 }
 
-// TODO finish this, whenever the user select a pizza it should be added to the object, and that should be downloadable
 const addPizza = (e: any) => {
     const selectedPizza = main.loadPizzak.getAllPizza()
         .map(pizza => e.target?.value == pizza.nev ? pizza : undefined)

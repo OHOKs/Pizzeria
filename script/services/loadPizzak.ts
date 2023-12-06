@@ -4,17 +4,18 @@ interface LoadPizzakInterface {
     getAllPizza(): Array<Pizza>
 }
 
-// IMPORTANT THIS WILL CLEAR THE LOCALSTORAGE EVERYTIME THE PAGE RELOADS
 class LoadPizzak implements LoadPizzakInterface {
+    // This is Deprecated
     private pizzaList: Pizza[];
 
     constructor() {
-        this._counter = 0;
+        this._counter = parseInt(window.localStorage.getItem("0") ?? "0");
         this.pizzaList = [];
-        // TODO change this
-        this.clearLocalStorage()
         this.generatePizzas()
-        this.addPizzasToLocalStorage()
+        for (const pizzaListElement of this.pizzaList) {
+            this.addNewPizzaToLocalStorage(pizzaListElement)
+        }
+        console.log(this._counter)
     }
 
     private _counter: number;
@@ -38,16 +39,20 @@ class LoadPizzak implements LoadPizzakInterface {
         this.pizzaList.push(new Pizza("Sonkas pizza", 1250, 2500))
     }
 
-    // TODO this will blindly rewrite the whole localstorage, this is bad behaviour, it should CHECK what pizzas
-    //  already exit in it and only add the ones that aren't present
-    addPizzasToLocalStorage(): void {
-        for (const pizzaListElement of this.pizzaList) {
-            window.localStorage.setItem(this._counter.toString(), JSON.stringify(pizzaListElement));
+    addNewPizzaToLocalStorage(pizza: Pizza): void {
+        const existingPizzas = this.getAllPizzaFromLocalStorage();
+
+        // Workaround for Array.includes() to work
+        const existingPizzasString = existingPizzas.map(e => JSON.stringify(e))
+        const pizzaString = JSON.stringify(pizza)
+
+        if (!existingPizzasString.includes(pizzaString)) {
+            window.localStorage.setItem(this._counter.toString(), JSON.stringify(pizza));
             this.countUp()
         }
     }
 
-    // TODO make a version of this, that will sanitize the localstorage, to remove duplicate elements just to be safe
+    // TODO make a button for this, so everything can be cleared
     clearLocalStorage(): void {
         window.localStorage.clear()
     }
@@ -67,6 +72,7 @@ class LoadPizzak implements LoadPizzakInterface {
 
     countUp(): void {
         this._counter++;
+        window.localStorage.setItem("0", this._counter.toString())
     }
 
 
