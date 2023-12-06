@@ -8,6 +8,7 @@ interface FeltetekInterface {
 interface PizzaInterface extends etel.EtelInterface {
     _ar: number;
     feltetekList: Array<string>;
+    _meret: number;
 
     megromlik(): string;
 
@@ -19,15 +20,23 @@ interface PizzaInterface extends etel.EtelInterface {
 
     get feltetek(): Array<string>;
 
+    get meret(): number;
+
     set ar(pizzaPrice: number);
 
     set feltetek(feltetek: Array<string>);
+
+    set meret(meret: Number);
+
 }
 
+// TODO
+//  - cleanup needed
+//  - also MAKE THE GOD DAMN NAMES UNIFORM EVERYWHERE
 class Pizza extends etel.Etel implements PizzaInterface {
     feltetekList: string[];
 
-    constructor(pizzaName: string, pizzaCalorie: number, pizzaPrice: number = 1500) {
+    constructor(pizzaName: string, pizzaCalorie: number, pizzaPrice: number = 1500, feltetekList: string[] = []) {
         if (!pizzaName.includes('pizza')) {
             super(pizzaName + " pizza", pizzaCalorie);
         } else {
@@ -40,7 +49,17 @@ class Pizza extends etel.Etel implements PizzaInterface {
             this._ar = pizzaPrice;
         }
 
-        this.feltetekList = [];
+        this.feltetekList = feltetekList;
+        this._meret = 0;
+    }
+
+    _meret: number;
+
+    get meret(): number {
+        return 0;
+    }
+
+    set meret(meret: Number) {
     }
 
     _ar: number;

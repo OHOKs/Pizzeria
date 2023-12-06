@@ -18,6 +18,7 @@ function parseJSON(jsonData: any) {
     }
 }
 
+// TODO change this to: when u upload a file it appends it to window.localstorage then rerenders the whole table
 function handleFile() {
     const fileInput = document.getElementById('fileInput');
 
@@ -48,15 +49,15 @@ function displayData(data: any) {
     if (tbody == null) return
     tbody.innerHTML = '';
 
-    data.forEach((item: { name: string | null; calorie: string | null; price: string | null; }) => {
+    data.forEach((item: { nev: string | null; _kaloriaSzam: string | null; _ar: string | null; }) => {
         const row = document.createElement('tr');
         const nameCell = document.createElement('td');
         const calorieCell = document.createElement('td');
         const typeCell = document.createElement('td');
 
-        nameCell.textContent = item.name;
-        calorieCell.textContent = item.calorie;
-        typeCell.textContent = item.price
+        nameCell.textContent = item.nev;
+        calorieCell.textContent = item._kaloriaSzam;
+        typeCell.textContent = item._ar
 
         row.appendChild(nameCell);
         row.appendChild(calorieCell);
@@ -68,3 +69,7 @@ function displayData(data: any) {
 
 const uploadButton = document.getElementById("uploadButton")
 uploadButton?.addEventListener('click', handleFile)
+
+document.onreadystatechange = () => {
+    displayData(main.loadPizzak.getAllPizzaFromLocalStorage())
+};

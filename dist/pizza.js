@@ -1,6 +1,9 @@
 import * as etel from "./etel.js";
+// TODO
+//  - cleanup needed
+//  - also MAKE THE GOD DAMN NAMES UNIFORM EVERYWHERE
 class Pizza extends etel.Etel {
-    constructor(pizzaName, pizzaCalorie, pizzaPrice = 1500) {
+    constructor(pizzaName, pizzaCalorie, pizzaPrice = 1500, feltetekList = []) {
         if (!pizzaName.includes('pizza')) {
             super(pizzaName + " pizza", pizzaCalorie);
         }
@@ -13,7 +16,13 @@ class Pizza extends etel.Etel {
         else {
             this._ar = pizzaPrice;
         }
-        this.feltetekList = [];
+        this.feltetekList = feltetekList;
+        this._meret = 0;
+    }
+    get meret() {
+        return 0;
+    }
+    set meret(meret) {
     }
     get ar() {
         return this._ar;

@@ -9,6 +9,7 @@ const getAndLoginUser = (event: any) => {
     const pass = document.getElementById("passwordField") as HTMLInputElement | null
 
     if (user && pass != null) {
+
         main.login.loginUser(user?.value, pass?.value)
     }
     console.log(document.cookie)

@@ -54,7 +54,7 @@ const downloadAll = (event: any) => {
 const addAllPizzasToSelect = () => {
     let e = getSelectElement('pizzaDrop')
     if (e == null) return
-    e.innerHTML += main.loadPizzak.getAllPizza()
+    e.innerHTML += main.loadPizzak.getAllPizzaFromLocalStorage()
         .map(pizza => `<option value="${pizza.nev}">${pizza.nev}</option>`)
         .join('')
 }
