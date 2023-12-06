@@ -18,13 +18,13 @@ const displayLogout = () => {
     button.innerText = "Logout"
     button.addEventListener('click', logoutUser)
 
-
     rendeles.href = "./rendeles"
     rendeles.innerHTML = "Rendeles"
     div.append(rendeles)
 
     document.body.append(div)
     document.body.append(button)
+ 
 }
 
 const displayLogin = () => {
@@ -34,6 +34,7 @@ const displayLogin = () => {
     a.href = "./login"
     a.innerHTML = "Login"
     div.append(a)
+    div.className = "login-box"
 
     document.body.append(div)
 }
@@ -45,6 +46,7 @@ const displayAdminPanel = () => {
     a.href = "./admin"
     a.innerHTML = "Admin Panel"
     div.append(a)
+    div.className = "login-box"
 
     document.body.append(div)
 }

@@ -25,6 +25,7 @@ const displayLogin = () => {
     a.href = "./login";
     a.innerHTML = "Login";
     div.append(a);
+    div.className = "login-box";
     document.body.append(div);
 };
 const displayAdminPanel = () => {
@@ -33,6 +34,7 @@ const displayAdminPanel = () => {
     a.href = "./admin";
     a.innerHTML = "Admin Panel";
     div.append(a);
+    div.className = "login-box";
     document.body.append(div);
 };
 const whatToDisplay = () => {
