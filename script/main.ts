@@ -1,10 +1,9 @@
-import * as etel from "./etel.js"
 import * as pizza from "./pizza.js"
 import * as cookie from "./services/cookie.js"
 import * as register from "./services/register.js"
 import * as login from "./services/login.js"
 import * as index from "./services/index.js"
-import * as loadPizzak from "./services/loadPizzak.js"
+import * as managePizza from "./services/managePizza.js"
 
 
 class Main {
@@ -13,18 +12,18 @@ class Main {
     private readonly _r: register.Register
     private readonly _l: login.Login
     private readonly _i: index.Index
-    private readonly _p: loadPizzak.LoadPizzak
+    private readonly _p: managePizza.ManagePizza
 
     constructor() {
         this._c = new cookie.Cookie
-        this._p = new loadPizzak.LoadPizzak
+        this._p = new managePizza.ManagePizza
 
         this._r = new register.Register(this._c)
         this._l = new login.Login(this._c)
         this._i = new index.Index(this._c)
     }
 
-    get loadPizzak(): loadPizzak.LoadPizzak {
+    get managePizza(): managePizza.ManagePizza {
         return this._p;
     }
 
@@ -43,6 +42,7 @@ class Main {
     get index(): index.Index {
         return this._i;
     }
+
 
 }
 

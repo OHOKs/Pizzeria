@@ -20,12 +20,13 @@ const getSelectElement = (id) => {
 let penzKeret = parseInt(getInputElementValue("penzkeret"));
 const vasarlo = new Vasarlo(main.cookie.getCookie("username"), penzKeret);
 const createDownloadableJSON = () => {
+    console.log(vasarlo.pizzakatListaz());
     return JSON.stringify(vasarlo.pizzakatListaz());
 };
 // Dummy data
 // its sooo bad i cant even tell u
 // TODO xd bad lol
-let currentPizza = main.loadPizzak.getAllPizza()[0];
+let currentPizza = main.managePizza.getAllPizzaFromLocalStorage()[0];
 const addItem = (event) => {
     penzKeret = parseInt(getInputElementValue("penzkeret"));
     vasarlo.pizzatRendel(currentPizza);
@@ -44,12 +45,12 @@ const addAllPizzasToSelect = () => {
     let e = getSelectElement('pizzaDrop');
     if (e == null)
         return;
-    e.innerHTML += main.loadPizzak.getAllPizzaFromLocalStorage()
+    e.innerHTML += main.managePizza.getAllPizzaFromLocalStorage()
         .map(pizza => `<option value="${pizza.nev}">${pizza.nev}</option>`)
         .join('');
 };
 const addPizza = (e) => {
-    const selectedPizza = main.loadPizzak.getAllPizza()
+    const selectedPizza = main.managePizza.getAllPizzaFromLocalStorage()
         .map(pizza => { var _a; return ((_a = e.target) === null || _a === void 0 ? void 0 : _a.value) == pizza.nev ? pizza : undefined; })
         .filter(element => {
         return element !== undefined;

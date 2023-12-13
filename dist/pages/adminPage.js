@@ -37,9 +37,9 @@ function handleFile() {
             return;
         for (const pizzaObj of jsonData) {
             const pizza = pizzaObj;
-            main.loadPizzak.addNewPizzaToLocalStorage(pizza);
+            main.managePizza.addNewPizzaToLocalStorage(pizza);
         }
-        displayData(main.loadPizzak.getAllPizzaFromLocalStorage());
+        displayData(main.managePizza.getAllPizzaFromLocalStorage());
     };
     reader.readAsText(file);
 }
@@ -48,24 +48,34 @@ function displayData(data) {
     if (tbody == null)
         return;
     tbody.innerHTML = '';
-    // Quirky workaround for to be able to store the counter in localstorage xd
-    data.shift();
     data.forEach((item) => {
+        var _a, _b;
         const row = document.createElement('tr');
         const nameCell = document.createElement('td');
         const calorieCell = document.createElement('td');
-        const typeCell = document.createElement('td');
+        const priceCell = document.createElement('td');
+        const feltetekCell = document.createElement('td');
+        const meretCell = document.createElement('td');
         nameCell.textContent = item.nev;
         calorieCell.textContent = item._kaloriaSzam;
-        typeCell.textContent = item._ar;
+        priceCell.textContent = item._ar;
+        feltetekCell.textContent = (_b = (_a = item.feltetekList) === null || _a === void 0 ? void 0 : _a.join(", ")) !== null && _b !== void 0 ? _b : "Not found";
+        meretCell.textContent = item._meret;
         row.appendChild(nameCell);
         row.appendChild(calorieCell);
-        row.appendChild(typeCell);
+        row.appendChild(priceCell);
+        row.appendChild(feltetekCell);
+        row.appendChild(meretCell);
         tbody.appendChild(row);
     });
 }
+const handleNewPizza = () => {
+    window.location.href = "./addPizza";
+};
 const uploadButton = document.getElementById("uploadButton");
 uploadButton === null || uploadButton === void 0 ? void 0 : uploadButton.addEventListener('click', handleFile);
+const newPizzaButton = document.getElementById("newPizzaButton");
+newPizzaButton === null || newPizzaButton === void 0 ? void 0 : newPizzaButton.addEventListener('click', handleNewPizza);
 document.onreadystatechange = () => {
-    displayData(main.loadPizzak.getAllPizzaFromLocalStorage());
+    displayData(main.managePizza.getAllPizzaFromLocalStorage());
 };

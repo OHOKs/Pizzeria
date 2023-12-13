@@ -43,9 +43,9 @@ function handleFile() {
         if (jsonData == null) return
         for (const pizzaObj of jsonData) {
             const pizza = pizzaObj as Pizza
-            main.loadPizzak.addNewPizzaToLocalStorage(pizza)
+            main.managePizza.addNewPizzaToLocalStorage(pizza)
         }
-        displayData(main.loadPizzak.getAllPizzaFromLocalStorage());
+        displayData(main.managePizza.getAllPizzaFromLocalStorage());
     };
 
     reader.readAsText(file);
@@ -56,30 +56,45 @@ function displayData(data: any) {
     if (tbody == null) return
     tbody.innerHTML = '';
 
-    // Quirky workaround for to be able to store the counter in localstorage xd
-    data.shift()
-
-    data.forEach((item: { nev: string | null; _kaloriaSzam: string | null; _ar: string | null; }) => {
+    data.forEach((item: {
+        nev: string | null;
+        _kaloriaSzam: string | null;
+        _ar: string | null;
+        feltetekList: string[] | null;
+        _meret: string | null;
+    }) => {
         const row = document.createElement('tr');
         const nameCell = document.createElement('td');
         const calorieCell = document.createElement('td');
-        const typeCell = document.createElement('td');
+        const priceCell = document.createElement('td');
+        const feltetekCell = document.createElement('td')
+        const meretCell = document.createElement('td')
 
         nameCell.textContent = item.nev;
         calorieCell.textContent = item._kaloriaSzam;
-        typeCell.textContent = item._ar
+        priceCell.textContent = item._ar;
+        feltetekCell.textContent = item.feltetekList?.join(", ") ?? "Not found";
+        meretCell.textContent = item._meret;
 
         row.appendChild(nameCell);
         row.appendChild(calorieCell);
-        row.appendChild(typeCell);
+        row.appendChild(priceCell);
+        row.appendChild(feltetekCell);
+        row.appendChild(meretCell);
 
         tbody.appendChild(row);
     });
 }
 
+const handleNewPizza = () => {
+    window.location.href = "./addPizza"
+}
+
 const uploadButton = document.getElementById("uploadButton")
 uploadButton?.addEventListener('click', handleFile)
+const newPizzaButton = document.getElementById("newPizzaButton")
+newPizzaButton?.addEventListener('click', handleNewPizza)
 
 document.onreadystatechange = () => {
-    displayData(main.loadPizzak.getAllPizzaFromLocalStorage())
+    displayData(main.managePizza.getAllPizzaFromLocalStorage())
 };

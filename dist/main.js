@@ -3,16 +3,16 @@ import * as cookie from "./services/cookie.js";
 import * as register from "./services/register.js";
 import * as login from "./services/login.js";
 import * as index from "./services/index.js";
-import * as loadPizzak from "./services/loadPizzak.js";
+import * as managePizza from "./services/managePizza.js";
 class Main {
     constructor() {
         this._c = new cookie.Cookie;
-        this._p = new loadPizzak.LoadPizzak;
+        this._p = new managePizza.ManagePizza;
         this._r = new register.Register(this._c);
         this._l = new login.Login(this._c);
         this._i = new index.Index(this._c);
     }
-    get loadPizzak() {
+    get managePizza() {
         return this._p;
     }
     get cookie() {

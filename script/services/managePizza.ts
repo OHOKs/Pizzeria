@@ -1,10 +1,14 @@
-import {Pizza} from "../pizza.js";
+import {Pizza, PizzaInterface} from "../pizza.js";
 
 interface LoadPizzakInterface {
     getAllPizza(): Array<Pizza>
+
+    generatePizzas(): void;
+
+    getAllPizzaFromLocalStorage(): Array<Pizza>
 }
 
-class LoadPizzak implements LoadPizzakInterface {
+class ManagePizza implements LoadPizzakInterface {
     // This is Deprecated
     private pizzaList: Pizza[];
 
@@ -39,18 +43,23 @@ class LoadPizzak implements LoadPizzakInterface {
         this.pizzaList.push(new Pizza("Sonkas pizza", 1250, 2500))
     }
 
-    addNewPizzaToLocalStorage(pizza: Pizza): void {
-        const existingPizzas = this.getAllPizzaFromLocalStorage();
+    generatePizza(pizzaName: string, pizzaCalorie: number, pizzaPrice?: number, feltetekList?: string[], meret?: number): Pizza {
+        return new Pizza(pizzaName, pizzaCalorie, pizzaPrice, feltetekList, meret)
+    }
 
+    addNewPizzaToLocalStorage(pizza: PizzaInterface): void {
+        const existingPizzas = this.getAllPizzaFromLocalStorage();
         // Workaround for Array.includes() to work
+
         const existingPizzasString = existingPizzas.map(e => JSON.stringify(e))
         const pizzaString = JSON.stringify(pizza)
 
         if (!existingPizzasString.includes(pizzaString)) {
-            window.localStorage.setItem(this._counter.toString(), JSON.stringify(pizza));
+            window.localStorage.setItem(this.counter.toString(), JSON.stringify(pizza));
             this.countUp()
         }
     }
+
 
     // TODO make a button for this, so everything can be cleared
     clearLocalStorage(): void {
@@ -60,11 +69,17 @@ class LoadPizzak implements LoadPizzakInterface {
     // if the Pizza Class changes this WILL break
     getAllPizzaFromLocalStorage(): Array<Pizza> {
         const pizzas: Array<Pizza> = [];
-        for (let i = 0; i < localStorage.length; i++) {
+        for (let i = 1; i < localStorage.length; i++) {
             const pizzaString = localStorage.getItem(i.toString());
             if (pizzaString != null) {
-                let pizzaObj = JSON.parse(pizzaString) as Pizza;
-                pizzas.push(pizzaObj);
+                let pizzaObj = JSON.parse(pizzaString);
+                let pizzaClass = new Pizza(
+                    pizzaObj.nev,
+                    pizzaObj._kaloriaSzam,
+                    pizzaObj._ar,
+                    pizzaObj.feltetekList,
+                    pizzaObj._meret)
+                pizzas.push(pizzaClass);
             }
         }
         return pizzas;
@@ -78,4 +93,4 @@ class LoadPizzak implements LoadPizzakInterface {
 
 }
 
-export {LoadPizzakInterface, LoadPizzak}
+export {LoadPizzakInterface, ManagePizza}

@@ -7,6 +7,8 @@ class Vasarlo {
     }
     pizzatRendel(pizza) {
         console.log(pizza);
+        // it wont work cus this: getAllPizzaFromLocalStorage() doesnt create a new Pizza object
+        // only casts the JSON to the same class
         if (!(pizza instanceof Pizza)) {
             console.log('HIBA! Nem pizza!');
             return;

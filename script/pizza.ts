@@ -9,6 +9,7 @@ interface PizzaInterface extends etel.EtelInterface {
     _ar: number;
     feltetekList: Array<string>;
     _meret: number;
+    _kaloriaSzam: number;
 
     megromlik(): string;
 
@@ -22,11 +23,15 @@ interface PizzaInterface extends etel.EtelInterface {
 
     get meret(): number;
 
+    get kaloriaSzam(): number;
+
     set ar(pizzaPrice: number);
 
     set feltetek(feltetek: Array<string>);
 
     set meret(meret: Number);
+
+    set kaloriSzam(kaloriaSzam: number);
 
 }
 
@@ -35,8 +40,9 @@ interface PizzaInterface extends etel.EtelInterface {
 //  - also MAKE THE GOD DAMN NAMES UNIFORM EVERYWHERE
 class Pizza extends etel.Etel implements PizzaInterface {
     feltetekList: string[];
+    _kaloriaSzam: number;
 
-    constructor(pizzaName: string, pizzaCalorie: number, pizzaPrice: number = 1500, feltetekList: string[] = []) {
+    constructor(pizzaName: string, pizzaCalorie: number, pizzaPrice: number = 1500, feltetekList: string[] = [], meret: number = 24) {
         if (!pizzaName.includes('pizza')) {
             super(pizzaName + " pizza", pizzaCalorie);
         } else {
@@ -49,8 +55,9 @@ class Pizza extends etel.Etel implements PizzaInterface {
             this._ar = pizzaPrice;
         }
 
+        this._kaloriaSzam = pizzaCalorie;
         this.feltetekList = feltetekList;
-        this._meret = 0;
+        this._meret = meret;
     }
 
     _meret: number;
@@ -82,6 +89,9 @@ class Pizza extends etel.Etel implements PizzaInterface {
 
     set feltetek(feltetek: string[]) {
         this.feltetekList = feltetek
+    }
+
+    set kaloriSzam(kaloriaSzam: number) {
     }
 
     megromlik(): string {

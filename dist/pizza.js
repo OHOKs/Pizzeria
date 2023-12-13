@@ -3,7 +3,7 @@ import * as etel from "./etel.js";
 //  - cleanup needed
 //  - also MAKE THE GOD DAMN NAMES UNIFORM EVERYWHERE
 class Pizza extends etel.Etel {
-    constructor(pizzaName, pizzaCalorie, pizzaPrice = 1500, feltetekList = []) {
+    constructor(pizzaName, pizzaCalorie, pizzaPrice = 1500, feltetekList = [], meret = 24) {
         if (!pizzaName.includes('pizza')) {
             super(pizzaName + " pizza", pizzaCalorie);
         }
@@ -16,8 +16,9 @@ class Pizza extends etel.Etel {
         else {
             this._ar = pizzaPrice;
         }
+        this._kaloriaSzam = pizzaCalorie;
         this.feltetekList = feltetekList;
-        this._meret = 0;
+        this._meret = meret;
     }
     get meret() {
         return 0;
@@ -40,6 +41,8 @@ class Pizza extends etel.Etel {
     }
     set feltetek(feltetek) {
         this.feltetekList = feltetek;
+    }
+    set kaloriSzam(kaloriaSzam) {
     }
     megromlik() {
         this._fogyaszthato = false;
